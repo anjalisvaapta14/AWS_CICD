@@ -11,4 +11,4 @@ WORKDIR /var/www/html
 COPY ./src/ /var/www/html/
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 7077

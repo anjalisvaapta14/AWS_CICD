@@ -1,0 +1,32 @@
+name: Auto Merge Develop to Master
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  merge_to_master:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Authenticate with GitHub
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/anjalisvaapta14/AWS_CICD.git
+
+      - name: Merge develop into master
+        run: |
+          git checkout master
+          git merge origin/develop --no-edit
+          git push origin master

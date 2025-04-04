@@ -1,0 +1,27 @@
+name: Auto Merge Develop to Master
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  merge_to_master:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "anjalisvaapta14"
+          git config --global user.email "anjalia@svaapta.com"
+
+      - name: Merge develop into master
+        run: |
+          git checkout master
+          git merge origin/develop --no-edit
+          git push origin master

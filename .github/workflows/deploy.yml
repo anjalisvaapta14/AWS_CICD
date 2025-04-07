@@ -50,15 +50,15 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Get version from file
+      - name: Generate dynamic version
         id: version
         run: |
-          VERSION=$(cat VERSION || echo "v1.0.$(date +%s)")
+          VERSION="v1.0-$(date +%Y%m%d%H%M)"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
         run: |
-          VERSION="v1.0-$(date +%Y%m%d%H%M)"
+          VERSION=${{ steps.version.outputs.version }}
           docker build -t anjali1404/bang:${VERSION} -t anjali1404/bang:latest .
           docker push anjali1404/bang:${VERSION}
           docker push anjali1404/bang:latest

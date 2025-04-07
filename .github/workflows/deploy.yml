@@ -58,7 +58,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          VERSION=${{ steps.version.outputs.version }}
+          VERSION="v1.0-$(date +%Y%m%d%H%M)"
           docker build -t anjali1404/bang:${VERSION} -t anjali1404/bang:latest .
           docker push anjali1404/bang:${VERSION}
           docker push anjali1404/bang:latest

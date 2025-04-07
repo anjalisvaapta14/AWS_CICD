@@ -6,4 +6,5 @@ echo "This is a test ";
 echo "This is deployment of Docker";
 echo "<br>";
 echo "CICD pipline is completed with docker deployment.";
+echo "aws deployment successfully.";
 ?>

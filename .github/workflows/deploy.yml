@@ -31,9 +31,9 @@ jobs:
       - name: Build and push Docker image
         run: |
           VERSION=${{ steps.version.outputs.version }}
-          docker build -t anjali1404/bang:${VERSION} -t anjali1404/bang:latest .
-          docker push anjali1404/bang:${VERSION}
-          docker push anjali1404/bang:latest
+          docker build -t anjali140402/bang:${VERSION} -t anjali140402/bang:latest .
+          docker push anjali140402/bang:${VERSION}
+          docker push anjali140402/bang:latest
 
       - name: Deploy to ECS using latest image
         run: |
